@@ -1,16 +1,16 @@
 from Karatsuba import Karatsuba
 def compmod(a,b,n):	#Tinh a^b mod n
-    bi = str(bin(b))
-    l = len(bi)-1
+    bi = str(bin(b))#Lay string cac bit cua b
+    l = len(bi)     #Lay do dai string
+#Thuat toan bat dau
     c = 0
     f = 1
-    while (l>0):	#Lay list cac bit cua b
+    for i in range(l):	# Bat dau tu most important bit
         c = 2*c
         f = Karatsuba(f,f)%n        
-        if bi[l] == '1':
+        if bi[i] == '1':
             c = c+1    
             f = Karatsuba(f,a)%n
-        l = l-1
     #Tinh toan
     return f
 #Ma hoa
@@ -39,22 +39,24 @@ def rdnum10(a):
         else:
             break
     return int(ret)
+# Lay cap q, p
 with open ("PaQ.txt", "r") as f:
     p = rdnum16(f.readline())
     q = rdnum16(f.readline())
-
+# Lay cap key e, d
 with open ("Caccapkey.txt", "r") as f:
     e = rdnum10(f.readline())
     d = rdnum10(f.readline())
-
+# Lay message 128 bit
 phi = Karatsuba(q-1, p-1)
 n = Karatsuba(q,p)
 with open ("Mes.txt", "r") as f:
     m = rdnum16(f.readline())
 
-encr = compmod(m,e,n)
-decr = compmod(encr,d,n)
-
-with open ("Result.txt", "w") as f:
-    f.write(str(hex(encr))+"/n")
-    f.write(str(hex(decr))+"/n")
+# Bat dau ma hoa
+encr = pow(m,e,n)
+decr = pow(encr,d,n)
+with open ("Result1.txt", "w") as f:
+    f.write(str(hex(encr))+"\n")
+with open ("Result2.txt", "w") as f:
+    f.write(str(hex(decr))+"\n")

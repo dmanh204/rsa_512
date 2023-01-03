@@ -11,7 +11,7 @@ def miller_rabin(n, a): # odd number only
     v = pow(a, q, n)
     if v == 1 | v == -1:
         return True
-    for _ in range(k-1):
+    for i in range(k-1):
         v = pow(v,2, n)
         if v == n-1:
             return True
@@ -194,24 +194,35 @@ def primetest(n):
     if n %2 == 0:
         return False
     # very large number
-    a = random.randrange(2,n-1)
-    for _ in range(40):
-        if not miller_rabin(n,a):
+    for i in range(40):
+        a = random.randrange(2,n-1)
+        if miller_rabin(n,a) == False:
             return False
+        else:
+            continue
     return True
 inp = int(input("Nhap so bit cua so prime can tao: "))
 # Tim so i
-i= random.randrange(pow(2,inp),pow(2,inp+1))
-while(primetest(i) == False):
+while(1):
     i = random.randrange(pow(2,inp),pow(2,inp+1))
+    if primetest(i) == True:
+        break
+    else:
+        continue
+print(primetest(i))
 # Tim so y
-y = random.randrange(pow(2,inp),pow(2,inp+1))
-while(primetest(i)== False or y == i):
+while(1):
     y = random.randrange(pow(2,inp),pow(2,inp+1))
-
+    if (y == i):
+        continue
+    if (primetest(y)== True):
+        break
+    else:
+        continue
+print(primetest(y))
 with open("PaQ.txt", "w") as f:
     f.write(str(hex(i))+"\n")
     f.write(str(hex(y))+"\n")
-    f.write("n= "+str(hex(Karatsuba(i,y)))+"\n")
+    f.write(str(hex(Karatsuba(i,y)))+"\n")
 print("Done!")
 
