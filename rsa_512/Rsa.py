@@ -1,4 +1,3 @@
-from Karatsuba import Karatsuba
 def compmod(a,b,n):	#Tinh a^b mod n
     bi = str(bin(b))#Lay string cac bit cua b
     l = len(bi)     #Lay do dai string
@@ -7,10 +6,10 @@ def compmod(a,b,n):	#Tinh a^b mod n
     f = 1
     for i in range(l):	# Bat dau tu most important bit
         c = 2*c
-        f = Karatsuba(f,f)%n        
+        f = (f*f)%n        
         if bi[i] == '1':
             c = c+1    
-            f = Karatsuba(f,a)%n
+            f = (f*a)%n
     #Tinh toan
     return f
 #Ma hoa
