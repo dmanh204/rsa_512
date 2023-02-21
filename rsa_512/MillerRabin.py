@@ -9,7 +9,7 @@ def miller_rabin(n, a): # odd number only
         q //= 2
 #testing
     v = pow(a, q, n)
-    if v == 1 | v == -1:
+    if v == 1 or v == -1:
         return True
     for i in range(k-1):
         v = pow(v,2, n)
