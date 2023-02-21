@@ -1,4 +1,3 @@
-from Karatsuba import Karatsuba
 import random
 def euclid(a, b):
 	r1 = a 
@@ -9,22 +8,22 @@ def euclid(a, b):
 	t2 = 1
 	while(r2>0):
 		q = r1//r2
-		r = r1 - Karatsuba(q,r2)
+		r = r1 - q*r2
 		r1 = r2
 		r2 = r 
 
-		s = s1 - Karatsuba(q,s2)
+		s = s1 - q*s2
 		s1 = s2
 		s2 = s 
 
-		t = t1 - Karatsuba(q,t2)
+		t = t1 - q*t2
 		t1 = t2
 		t2 = t 
 	return r1, s1, t1
 
 def listed(p,q):
-	n = Karatsuba(q, p)
-	phi = Karatsuba((p-1),(q-1))
+	n = q* p
+	phi = (p-1)*(q-1)
 	result = []
 	count = 0
 	while(count < 10):
