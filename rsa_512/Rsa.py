@@ -47,8 +47,8 @@ with open ("Caccapkey.txt", "r") as f:
     e = rdnum10(f.readline())
     d = rdnum10(f.readline())
 # Lay message 128 bit
-phi = Karatsuba(q-1, p-1)
-n = Karatsuba(q,p)
+phi =(q-1)*(p-1)
+n = q*p
 with open ("Mes.txt", "r") as f:
     m = rdnum16(f.readline())
 
